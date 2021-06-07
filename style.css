@@ -1,0 +1,11 @@
+
+
+
+body .main-content {
+  background-color: #35353f;
+  color: aquamarine;
+  /* margin: 40px 30% 40px 30%; */
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}

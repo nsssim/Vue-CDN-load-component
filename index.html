@@ -1,0 +1,63 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Vue CDN load component like a Pro</title>
+  <link rel="stylesheet" type="text/css" href = "style.css">
+  <link rel="stylesheet" type="text/css" href = "bootstrap.min.css">
+
+</head>
+
+<body>
+    <div id="app" class="main-content col-12"> 
+      <h1>Vue CDN load component like a Pro</h1>
+      
+      <br>
+      <component_a></component_a>
+      <br>
+      <component_b></component_b>
+
+    </div> 
+</body>
+
+</html>
+
+
+
+<script src="axios.min.js"></script>
+<script src="bootstrap-native.min.js"></script>
+<script src="vue.js"></script>
+
+<script src="aaaa.js">  // <------ Load component  </script>
+<script src="bbbb.js">  // <------ Load component  </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', async function () {
+    
+    //register components
+    let html = await axios.get("aaaa.html"); // <---- Load HTML file
+    aaaa.template = html.data;
+    Vue.component("component_a", aaaa);
+
+    html = await axios.get("bbbb.html"); // <---- Load HTML file
+    bbbb.template = html.data;
+    Vue.component("component_b", bbbb);
+
+        
+    new Vue({
+      el: '#app',  
+
+      data: {
+        m: '"App" is mounted now!',
+      },
+      methods:{
+        autoexec:function(){ console.log(this.m); },
+      },
+      mounted : function () {
+        this.autoexec()
+      }
+
+
+
+    })
+  })
+</script>
